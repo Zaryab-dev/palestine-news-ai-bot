@@ -33,6 +33,8 @@ class DriveUploader:
 
     def _init_service(self):
         """Build Google Drive API v3 client using OAuth refresh token."""
+        import httplib2
+        import google_auth_httplib2
         from google.oauth2.credentials import Credentials
         from googleapiclient.discovery import build
 
@@ -44,7 +46,9 @@ class DriveUploader:
             client_secret=self.client_secret,
             scopes=["https://www.googleapis.com/auth/drive"],
         )
-        return build("drive", "v3", credentials=creds)
+        http = httplib2.Http(disable_ssl_certificate_validation=True)
+        authorized_http = google_auth_httplib2.AuthorizedHttp(creds, http=http)
+        return build("drive", "v3", http=authorized_http)
 
     def _find_or_create_folder(self, folder_name: str, parent_id: Optional[str] = None) -> str:
         """Find folder by name under parent or create it."""
