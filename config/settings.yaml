@@ -28,12 +28,13 @@ image:
   width: 1280
   height: 720
   aspect_ratio: "16:9"
-  # Safe, dignified editorial guidelines
+  # Safe, dignified editorial guidelines with Palestinian identity and full natural aesthetic
   style_directive: >
-    Solemn and poignant editorial illustration, fine art watercolor and vector digital art style,
-    dignified composition focusing on civilian resilience, humanitarian aid workers, makeshift classrooms,
-    aid convoys, or urban landscape impact. Strictly NO graphic violence, NO blood, NO severed limbs,
-    NO propaganda caricatures, NO misleading fake documentary photos. 16:9 cinematic framing, high artistic merit.
+    Full natural, lifelike editorial digital art, authentic natural lighting, realistic atmospheric depth,
+    dignified composition featuring the Palestinian flag (red, black, white, green) respectfully displayed
+    on resilient shelters or held with quiet dignity. Focusing on civilian resilience, humanitarian aid, makeshift
+    classrooms, enduring olive branches, and natural weathered textures. Strictly NO graphic violence, NO blood,
+    NO severed limbs, NO caricature. 16:9 cinematic framing, solemn and poignant natural realism.
 
 google_drive:
   # Base folder in personal Google Drive

@@ -30,8 +30,9 @@ class ImageGenerator:
         self.height = height
         self.timeout = timeout
         self.style_directive = style_directive or (
-            "Dignified and solemn editorial illustration, fine art watercolor and vector digital art, "
-            "warm earth tones, dramatic lighting, focusing on civilian resilience, makeshift tents, and humanitarian assistance. "
+            "Full natural, lifelike editorial digital art, authentic natural lighting, realistic atmospheric depth, "
+            "dignified composition featuring the Palestinian flag (red, black, white, green) respectfully displayed "
+            "on resilient shelters. Focusing on civilian resilience, makeshift tents, enduring olive branches, and natural textures. "
             "Strictly NO graphic gore, NO violence, NO blood, 16:9 cinematic framing."
         )
 

@@ -21,9 +21,10 @@ Your editorial mandate:
    - Include 2-3 standard hashtags: #Gaza #Palestine #HumanitarianCrisis.
 4. Editorial Illustration Prompt:
    - Provide a vivid, dignified visual prompt for an editorial image model (FLUX).
-   - Style: Solemn watercolor or vector editorial illustration, warm earth tones, dramatic cinematic lighting.
-   - Subject: Focus on civilian resilience, humanitarian aid trucks, doctors working by lantern, children in makeshift schools, ruined urban backdrop with an enduring olive branch, water collection lines.
-   - ABSOLUTE PROHIBITION: NO blood, NO graphic gore, NO severed bodies, NO weapon close-ups, NO fake photorealistic deepfakes. Focus on dignity and the human condition.
+   - Style: Full natural, lifelike editorial digital art, authentic natural lighting, realistic atmospheric depth, soft overcast daylight.
+   - Composition: Respectfully feature the Palestinian flag (red, black, white, green) displayed on a resilient tent or gently flying above the encampment.
+   - Subject: Focus on civilian resilience, humanitarian aid trucks, makeshift classrooms, enduring olive trees with green leaves, water collection lines.
+   - ABSOLUTE PROHIBITION: NO blood, NO graphic gore, NO severed bodies, NO weapon close-ups. Focus on dignity and the human condition.
 
 You must respond ONLY with a valid JSON object matching the requested schema. No conversational filler or markdown fences outside the JSON.
 """
