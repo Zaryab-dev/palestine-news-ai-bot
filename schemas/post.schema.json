@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PalestineNewsPost",
+  "type": "object",
+  "required": [
+    "batch_id",
+    "story_id",
+    "topic",
+    "headline",
+    "source_name",
+    "source_urls",
+    "published_at_utc",
+    "x_post",
+    "image_prompt",
+    "image_filename",
+    "verification_status",
+    "review_status"
+  ],
+  "properties": {
+    "batch_id": {
+      "type": "string",
+      "description": "Unique identifier for the batch run (e.g., 20261109_0500_utc)"
+    },
+    "story_id": {
+      "type": "string",
+      "description": "Short SHA-256 hash derived from the canonical URL and title"
+    },
+    "topic": {
+      "type": "string",
+      "enum": [
+        "humanitarian_aid",
+        "healthcare_medical",
+        "food_famine",
+        "infrastructure_housing",
+        "attacks_bombing",
+        "diplomacy_politics",
+        "education_children"
+      ]
+    },
+    "headline": {
+      "type": "string",
+      "description": "Clean, factual, objective headline"
+    },
+    "source_name": {
+      "type": "string",
+      "description": "Primary reporting agency or publisher (e.g. UN OCHA, Al Jazeera, Reuters)"
+    },
+    "source_urls": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "minItems": 1
+    },
+    "published_at_utc": {
+      "type": "string",
+      "description": "ISO 8601 publication timestamp"
+    },
+    "x_post": {
+      "type": "string",
+      "maxLength": 280,
+      "description": "Platform-ready drafted post under 280 characters with hashtags and attribution"
+    },
+    "x_thread": {
+      "type": "string",
+      "description": "Optional secondary context post for long threads or specific aid appeal"
+    },
+    "summary_facts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "2-3 verified factual bullet points attributed to the source"
+    },
+    "image_prompt": {
+      "type": "string",
+      "description": "Dignified editorial illustration prompt for Pollinations FLUX"
+    },
+    "image_style": {
+      "type": "string",
+      "default": "editorial_illustration"
+    },
+    "image_filename": {
+      "type": "string",
+      "description": "Local and Drive filename for the generated graphic (e.g., story_id.png)"
+    },
+    "image_status": {
+      "type": "string",
+      "enum": ["GENERATED", "IMAGE_FAILED", "SKIPPED"],
+      "default": "SKIPPED"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["urgent", "high", "normal"],
+      "default": "normal"
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": ["verified_multi_source", "single_source_attributed", "review_required"],
+      "default": "single_source_attributed"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["PENDING_IMAGE", "READY_FOR_REVIEW", "APPROVED", "POSTED", "REJECTED"],
+      "default": "PENDING_IMAGE"
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "description": "Timestamp when AI generated the post"
+    }
+  }
+}

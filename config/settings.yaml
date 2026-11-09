@@ -1,0 +1,48 @@
+# Pipeline & Model Settings
+
+pipeline:
+  # Maximum stories to process in a single batch
+  batch_size: 5
+  # Maximum story age (in hours) to be considered for a new batch
+  max_story_age_hours: 48
+  # Title similarity threshold for deduplicating stories across different publishers
+  dedupe_similarity_threshold: 0.72
+  # Directories
+  output_dir: "output"
+  state_dir: "state"
+
+llm:
+  # Default provider: "gemini" (Google AI Studio Free Tier), fallback: "groq"
+  provider: "gemini"
+  gemini_model: "gemini-2.5-flash"
+  gemini_fallback_model: "gemini-1.5-flash"
+  groq_model: "llama-3.3-70b-versatile"
+  # Low temperature for strict factual fidelity and zero hallucination
+  temperature: 0.2
+  max_tokens: 1500
+
+image:
+  # Primary provider: "pollinations" (100% free, no API key required)
+  provider: "pollinations"
+  model: "flux"
+  width: 1280
+  height: 720
+  aspect_ratio: "16:9"
+  # Safe, dignified editorial guidelines
+  style_directive: >
+    Solemn and poignant editorial illustration, fine art watercolor and vector digital art style,
+    dignified composition focusing on civilian resilience, humanitarian aid workers, makeshift classrooms,
+    aid convoys, or urban landscape impact. Strictly NO graphic violence, NO blood, NO severed limbs,
+    NO propaganda caricatures, NO misleading fake documentary photos. 16:9 cinematic framing, high artistic merit.
+
+google_drive:
+  # Base folder in personal Google Drive
+  root_folder_name: "Gaza-Palestine-News-AI-Bot"
+
+x_post:
+  max_chars: 280
+  include_source_link: true
+  primary_hashtags:
+    - "#Gaza"
+    - "#Palestine"
+    - "#HumanitarianCrisis"

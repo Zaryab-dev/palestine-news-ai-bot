@@ -1,0 +1,25 @@
+# Environment and secrets
+.env
+*.env
+client_secrets.json
+token.json
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Pipeline runtime outputs
+output/
+build/
+*.log
+
+# Keep state tracking in repo or ignore local state runs
+state/processed_stories.json
+state/pending_queue.json
+!state/.gitkeep

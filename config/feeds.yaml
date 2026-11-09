@@ -1,0 +1,159 @@
+# Curated RSS Feeds for Palestine & Gaza News, Humanitarian Updates, and Diplomacy
+feeds:
+  # UN & Humanitarian Relief Agencies
+  - name: "UN News - Middle East"
+    url: "https://news.un.org/feed/subscribe/en/news/region/middle-east/feed/rss.xml"
+    category: "humanitarian_un"
+    reliability_tier: 1
+    enabled: true
+
+  - name: "UN News - Humanitarian Aid"
+    url: "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml"
+    category: "humanitarian_un"
+    reliability_tier: 1
+    enabled: true
+
+  # International & Field Reporting
+  - name: "Al Jazeera English"
+    url: "https://www.aljazeera.com/xml/rss/all.xml"
+    category: "international_news"
+    reliability_tier: 1
+    enabled: true
+
+  - name: "Middle East Eye"
+    url: "https://www.middleeasteye.net/rss"
+    category: "regional_news"
+    reliability_tier: 1
+    enabled: true
+
+  - name: "France 24 - Middle East"
+    url: "https://www.france24.com/en/middle-east/rss"
+    category: "international_news"
+    reliability_tier: 1
+    enabled: true
+
+  - name: "Democracy Now! Headlines"
+    url: "https://www.democracynow.org/democracynow.rss"
+    category: "independent_news"
+    reliability_tier: 1
+    enabled: true
+
+  - name: "BBC News - Middle East"
+    url: "http://feeds.bbci.co.uk/news/world/middle_east/rss.xml"
+    category: "international_news"
+    reliability_tier: 1
+    enabled: true
+
+  - name: "The Guardian - Middle East"
+    url: "https://www.theguardian.com/world/middleeast/rss"
+    category: "international_news"
+    reliability_tier: 1
+    enabled: true
+
+# Relevance Filtering
+filter_rules:
+  # Must contain at least one of these primary keywords in title or summary
+  primary_keywords:
+    - "gaza"
+    - "palestine"
+    - "palestinian"
+    - "palestinians"
+    - "rafah"
+    - "khan younis"
+    - "jabalia"
+    - "deir al-balah"
+    - "west bank"
+    - "unrwa"
+    - "al-shifa"
+    - "nasser hospital"
+    - "kamal adwan"
+
+  # Secondary topic indicators to classify story themes
+  topic_keywords:
+    humanitarian_aid:
+      - "aid"
+      - "famine"
+      - "hunger"
+      - "starvation"
+      - "food"
+      - "water"
+      - "supplies"
+      - "trucks"
+      - "unrwa"
+      - "wfp"
+      - "ocha"
+      - "relief"
+      - "tents"
+    healthcare_medical:
+      - "hospital"
+      - "clinic"
+      - "doctor"
+      - "doctors"
+      - "nurse"
+      - "medical"
+      - "patients"
+      - "medicine"
+      - "who"
+      - "red crescent"
+      - "prcs"
+      - "surgeons"
+      - "epidemic"
+      - "polio"
+    infrastructure_housing:
+      - "infrastructure"
+      - "homes"
+      - "residential"
+      - "shelter"
+      - "rubble"
+      - "destruction"
+      - "water well"
+      - "sewage"
+      - "electricity"
+      - "blackout"
+    attacks_bombing:
+      - "strike"
+      - "airstrike"
+      - "bombing"
+      - "shelled"
+      - "artillery"
+      - "killed"
+      - "casualties"
+      - "injured"
+      - "massacre"
+      - "attack"
+    diplomacy_politics:
+      - "washington"
+      - "white house"
+      - "biden"
+      - "trump"
+      - "state department"
+      - "congress"
+      - "united nations"
+      - "security council"
+      - "icj"
+      - "icc"
+      - "ceasefire"
+      - "veto"
+      - "arms transfer"
+      - "weapons"
+    education_children:
+      - "children"
+      - "child"
+      - "infant"
+      - "babies"
+      - "school"
+      - "education"
+      - "students"
+      - "university"
+      - "teachers"
+      - "unicef"
+      - "orphans"
+
+  # Reject articles clearly out of scope or sports/entertainment
+  exclude_keywords:
+    - "football"
+    - "soccer"
+    - "champions league"
+    - "nba"
+    - "celebrity"
+    - "box office"
