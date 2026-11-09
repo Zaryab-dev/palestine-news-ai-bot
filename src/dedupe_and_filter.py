@@ -64,6 +64,8 @@ class StoryDeduplicator:
                     matched_cluster["source_urls"].append(candidate["canonical_url"])
                 if candidate["source_name"] not in matched_cluster["sources"]:
                     matched_cluster["sources"].append(candidate["source_name"])
+                if not matched_cluster.get("source_image_url") and candidate.get("source_image_url"):
+                    matched_cluster["source_image_url"] = candidate.get("source_image_url")
                 # Corroborated by multiple independent agencies!
                 matched_cluster["verification_status"] = "verified_multi_source"
                 matched_cluster["priority"] = "high"
@@ -80,6 +82,7 @@ class StoryDeduplicator:
                     "topic": candidate["topic"],
                     "category": candidate["category"],
                     "published_at_utc": candidate["published_at_utc"],
+                    "source_image_url": candidate.get("source_image_url"),
                     "verification_status": (
                         "verified_multi_source"
                         if candidate.get("category") == "humanitarian_un"

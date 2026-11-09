@@ -53,7 +53,40 @@ def parse_published_date(entry: Any) -> str:
     if hasattr(entry, "updated_parsed") and entry.updated_parsed:
         dt = datetime(*entry.updated_parsed[:6], tzinfo=timezone.utc)
         return dt.isoformat()
-    return datetime.now(timezone.utc).isoformat()
+def extract_source_image_url(entry: Any, raw_html: str = "") -> Optional[str]:
+    """Extract lead journalistic image from RSS enclosures, media tags, or embedded HTML."""
+    # 1. Check enclosures
+    enclosures = getattr(entry, "enclosures", []) or []
+    for enc in enclosures:
+        href = enc.get("href", "")
+        enc_type = enc.get("type", "")
+        if href and (enc_type.startswith("image/") or re.search(r"\.(jpe?g|png|webp)", href, re.IGNORECASE)):
+            return href
+
+    # 2. Check media_content
+    media_content = getattr(entry, "media_content", []) or []
+    for m in media_content:
+        url = m.get("url", "")
+        if url and (m.get("medium") == "image" or re.search(r"\.(jpe?g|png|webp)", url, re.IGNORECASE)):
+            return url
+
+    # 3. Check media_thumbnail
+    thumbnails = getattr(entry, "media_thumbnail", []) or []
+    for t in thumbnails:
+        url = t.get("url", "")
+        if url:
+            return url
+
+    # 4. Check embedded img in raw description or content
+    if raw_html:
+        soup = BeautifulSoup(raw_html, "html.parser")
+        img = soup.find("img")
+        if img and img.get("src"):
+            src = img.get("src", "").strip()
+            if src.startswith("http") and not any(skip in src.lower() for skip in ["avatar", "favicon", "logo", "tracker", "1x1"]):
+                return src
+
+    return None
 
 
 class RSSCollector:
@@ -119,7 +152,8 @@ class RSSCollector:
             parsed = feedparser.parse(resp.content)
             for entry in parsed.entries:
                 title = clean_html(getattr(entry, "title", ""))
-                summary = clean_html(getattr(entry, "summary", getattr(entry, "description", "")))
+                raw_summary = getattr(entry, "summary", getattr(entry, "description", ""))
+                summary = clean_html(raw_summary)
                 link = normalize_url(getattr(entry, "link", ""))
 
                 if not title or not link:
@@ -131,6 +165,7 @@ class RSSCollector:
                 topic = self.classify_topic(title, summary)
                 story_id = generate_story_id(link, title)
                 published_at = parse_published_date(entry)
+                source_image_url = extract_source_image_url(entry, raw_summary)
 
                 stories.append({
                     "story_id": story_id,
@@ -142,6 +177,7 @@ class RSSCollector:
                     "reliability_tier": feed_meta.get("reliability_tier", 1),
                     "topic": topic,
                     "published_at_utc": published_at,
+                    "source_image_url": source_image_url,
                 })
 
         except Exception as e:

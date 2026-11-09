@@ -48,3 +48,24 @@ def test_relevance_and_topic_classification():
     title3 = "Premier League football match highlights and weekend transfers"
     summary3 = "Champions league match review."
     assert collector.is_relevant(title3, summary3) is False
+
+
+def test_extract_source_image_url():
+    from src.rss_collector import extract_source_image_url
+
+    class MockEntry:
+        enclosures = [{"href": "https://example.org/photo.jpg", "type": "image/jpeg"}]
+        media_content = []
+        media_thumbnail = []
+
+    img = extract_source_image_url(MockEntry(), "")
+    assert img == "https://example.org/photo.jpg"
+
+    class MockEntryHtml:
+        enclosures = []
+        media_content = []
+        media_thumbnail = []
+
+    img_html = extract_source_image_url(MockEntryHtml(), '<p>Report text <img src="https://example.org/lead.png" /></p>')
+    assert img_html == "https://example.org/lead.png"
+

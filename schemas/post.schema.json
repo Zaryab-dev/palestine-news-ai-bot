@@ -54,6 +54,10 @@
       "type": "string",
       "description": "ISO 8601 publication timestamp"
     },
+    "source_image_url": {
+      "type": ["string", "null"],
+      "description": "URL of the original journalistic photo extracted from the feed"
+    },
     "x_post": {
       "type": "string",
       "maxLength": 280,
